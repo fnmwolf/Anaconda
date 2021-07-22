@@ -1,0 +1,17 @@
+bin/*
+build/*
+*.ncb
+*.user
+*.suo
+*.pdb
+*.ilk
+*.dll
+*.exe
+.deps
+.libs
+*.lo
+*.pc
+*.cache
+*.obj
+*.swc
+*.swp

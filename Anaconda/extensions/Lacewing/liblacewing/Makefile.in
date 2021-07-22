@@ -1,0 +1,141 @@
+
+PREFIX = $(DESTDIR)@prefix@
+
+CFLAGS = @CFLAGS@
+CXXFLAGS = @CXXFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+
+SO_EXT = @SO_EXT@
+
+SO_NAME = liblacewing.@SO_EXT@.0.2
+REAL_NAME = liblacewing.@SO_EXT@.0.2.6
+
+ifeq ($(SO_EXT),so)
+	SONAME_FLAGS=-Wl,-soname,@SO_NAME@
+endif
+
+COMMONDEPS = src/Common.h src/Backlog.h src/MessageBuilder.h src/MessageReader.h \
+				src/QueuedSend.h src/ReceiveBuffer.h src/TimeHelper.h src/Utility.h \
+				src/unix/EventPump.h src/unix/Pump.h src/unix/SendFile.h src/webserver/Common.h \
+				src/webserver/Map.h src/webserver/http/HTTP.h
+
+OBJECTS = build/Global.o build/Sync.o build/SpinSync.o build/Filter.o build/Address.o build/Thread.o \
+				build/Error.o build/RelayServer.o build/RelayClient.o build/Webserver.o build/HTTP.o \
+				build/Multipart.o build/MimeTypes.o build/Request.o build/Sessions.o build/Event.o build/EventPump.o \
+				build/Server.o build/Timer.o build/UDP.o build/Client.o build/Pump.o build/addr_flat.o \
+				build/eventpump_flat.o build/global_flat.o build/server_flat.o build/timer_flat.o \
+				build/webserver_flat.o build/filter_flat.o build/udp_flat.o build/client_flat.o \
+				build/error_flat.o build/sync_flat.o build/ssync_flat.o build/thread_flat.o build/FlashPolicy.o
+
+###########
+
+all: liblacewing.@SO_EXT@ liblacewing.a
+
+liblacewing.@SO_EXT@: $(OBJECTS)
+	@echo Linking shared library...
+	@g++ $(CXXFLAGS) $(SONAME_FLAGS) -shared -o $(REAL_NAME) ./build/*.o $(LIBS)
+
+liblacewing.a: $(OBJECTS)
+	@echo Linking static library...
+	@ar rcs liblacewing.a ./build/*.o
+
+build/Global.o: src/Global.cc $(COMMONDEPS) 
+	$(CC) $(CXXFLAGS) -c -o $@ src/Global.cc
+build/Sync.o: src/Sync.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/Sync.cc
+build/SpinSync.o: src/SpinSync.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/SpinSync.cc
+build/Filter.o: src/Filter.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/Filter.cc
+build/Address.o: src/Address.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/Address.cc
+build/Thread.o: src/Thread.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/Thread.cc
+build/Error.o: src/Error.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/Error.cc
+build/RelayServer.o: src/relay/RelayServer.cc $(COMMONDEPS) src/relay/FrameReader.h src/relay/IDPool.h
+	$(CC) $(CXXFLAGS) -c -o $@ src/relay/RelayServer.cc
+build/RelayClient.o: src/relay/RelayClient.cc $(COMMONDEPS) src/relay/FrameReader.h src/relay/IDPool.h
+	$(CC) $(CXXFLAGS) -c -o $@ src/relay/RelayClient.cc
+build/Webserver.o: src/webserver/Webserver.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/webserver/Webserver.cc
+build/Request.o: src/webserver/Request.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/webserver/Request.cc
+build/Sessions.o: src/webserver/Sessions.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/webserver/Sessions.cc
+build/MimeTypes.o: src/webserver/MimeTypes.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/webserver/MimeTypes.cc
+build/HTTP.o: src/webserver/http/HTTP.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/webserver/http/HTTP.cc
+build/Multipart.o: src/webserver/http/Multipart.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/webserver/http/Multipart.cc
+build/Event.o: src/unix/Event.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/unix/Event.cc
+build/EventPump.o: src/unix/EventPump.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/unix/EventPump.cc
+build/Server.o: src/unix/Server.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/unix/Server.cc
+build/Timer.o: src/unix/Timer.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/unix/Timer.cc
+build/UDP.o: src/unix/UDP.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/unix/UDP.cc
+build/Client.o: src/unix/Client.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/unix/Client.cc
+build/Pump.o: src/unix/Pump.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/unix/Pump.cc
+build/FlashPolicy.o: src/FlashPolicy.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/FlashPolicy.cc
+build/addr_flat.o: src/c/addr_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/addr_flat.cc
+build/eventpump_flat.o: src/c/eventpump_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/eventpump_flat.cc
+build/global_flat.o: src/c/global_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/global_flat.cc
+build/server_flat.o: src/c/server_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/server_flat.cc
+build/timer_flat.o: src/c/timer_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/timer_flat.cc
+build/webserver_flat.o: src/c/webserver_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/webserver_flat.cc
+build/filter_flat.o: src/c/filter_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/filter_flat.cc
+build/udp_flat.o: src/c/udp_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/udp_flat.cc
+build/client_flat.o: src/c/client_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/client_flat.cc
+build/error_flat.o: src/c/error_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/error_flat.cc
+build/sync_flat.o: src/c/sync_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/sync_flat.cc
+build/ssync_flat.o: src/c/ssync_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/ssync_flat.cc
+build/thread_flat.o: src/c/thread_flat.cc $(COMMONDEPS)
+	$(CC) $(CXXFLAGS) -c -o $@ src/c/thread_flat.cc
+
+############
+    
+clean:
+	rm -f liblacewing.@SO_EXT@* liblacewing.a ./build/*.o
+
+install: liblacewing.@SO_EXT@ liblacewing.a
+	@echo -----
+	@echo Installing shared library: $(PREFIX)/lib/liblacewing.@SO_EXT@
+	@install -d $(PREFIX)/lib
+	@install -m 0755 $(REAL_NAME) $(PREFIX)/lib/$(REAL_NAME)
+	@rm -f $(PREFIX)/lib/$(SO_NAME)
+	@ln -s $(REAL_NAME) $(PREFIX)/lib/$(SO_NAME)
+	@rm -f $(PREFIX)/lib/liblacewing.@SO_EXT@
+	@ln -s $(SO_NAME) $(PREFIX)/lib/liblacewing.@SO_EXT@
+	@echo Installing static library: $(PREFIX)/lib/liblacewing.a
+	@install -m 0755 liblacewing.a $(PREFIX)/lib/liblacewing.a
+	@echo Installing header file: $(PREFIX)/include/Lacewing.h
+	@install -d $(PREFIX)/include
+	@install -m 0644 ./include/Lacewing.h $(PREFIX)/include/Lacewing.h
+	@echo -----
+	@echo Compiler flags: -I$(PREFIX)/include
+	@echo Linker flags: -L$(PREFIX)/lib -llacewing
+	@echo ------
+
+.PHONY: all clean install
+

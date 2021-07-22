@@ -1,0 +1,82 @@
+#ifndef INCLUDE_GL_H
+#define INCLUDE_GL_H
+
+#ifdef CHOWDREN_IS_DESKTOP
+
+#ifdef CHOWDREN_USE_D3D
+#define NOMINMAX
+
+#ifndef NDEBUG
+#define D3D_DEBUG_INFO
+#endif
+
+#include <d3d9.h>
+
+#elif CHOWDREN_USE_GL
+#include <SDL_opengl.h>
+
+extern PFNGLBLENDEQUATIONSEPARATEEXTPROC __glBlendEquationSeparateEXT;
+extern PFNGLBLENDEQUATIONEXTPROC __glBlendEquationEXT;
+extern PFNGLBLENDFUNCSEPARATEEXTPROC __glBlendFuncSeparateEXT;
+extern PFNGLACTIVETEXTUREARBPROC __glActiveTextureARB;
+extern PFNGLCLIENTACTIVETEXTUREARBPROC __glClientActiveTextureARB;
+extern PFNGLGENFRAMEBUFFERSEXTPROC __glGenFramebuffersEXT;
+extern PFNGLDELETEFRAMEBUFFERSEXTPROC __glDeleteFramebuffersEXT;
+extern PFNGLFRAMEBUFFERTEXTURE2DEXTPROC __glFramebufferTexture2DEXT;
+extern PFNGLBINDFRAMEBUFFEREXTPROC __glBindFramebufferEXT;
+
+extern PFNGLUSEPROGRAMOBJECTARBPROC __glUseProgramObjectARB;
+extern PFNGLDETACHOBJECTARBPROC __glDetachObjectARB;
+extern PFNGLGETINFOLOGARBPROC __glGetInfoLogARB;
+extern PFNGLGETOBJECTPARAMETERIVARBPROC __glGetObjectParameterivARB;
+extern PFNGLLINKPROGRAMARBPROC __glLinkProgramARB;
+extern PFNGLCREATEPROGRAMOBJECTARBPROC __glCreateProgramObjectARB;
+extern PFNGLATTACHOBJECTARBPROC __glAttachObjectARB;
+extern PFNGLCOMPILESHADERARBPROC __glCompileShaderARB;
+extern PFNGLSHADERSOURCEARBPROC __glShaderSourceARB;
+extern PFNGLCREATESHADEROBJECTARBPROC __glCreateShaderObjectARB;
+extern PFNGLUNIFORM1IARBPROC __glUniform1iARB;
+extern PFNGLUNIFORM2FARBPROC __glUniform2fARB;
+extern PFNGLUNIFORM1FARBPROC __glUniform1fARB;
+extern PFNGLUNIFORM4FARBPROC __glUniform4fARB;
+extern PFNGLGETUNIFORMLOCATIONARBPROC __glGetUniformLocationARB;
+
+#define glBlendEquation __glBlendEquationEXT
+#define glBlendEquationSeparate __glBlendEquationSeparateEXT
+#define glBlendFuncSeparate __glBlendFuncSeparateEXT
+#define glActiveTexture __glActiveTextureARB
+#define glClientActiveTexture __glClientActiveTextureARB
+#define glGenFramebuffers __glGenFramebuffersEXT
+#define glDeleteFramebuffers __glDeleteFramebuffersEXT
+#define glBindFramebuffer __glBindFramebufferEXT
+#define glFramebufferTexture2D __glFramebufferTexture2DEXT
+
+#define glUseProgramObject __glUseProgramObjectARB
+#define glDetachObject __glDetachObjectARB
+#define glGetInfoLog __glGetInfoLogARB
+#define glGetObjectParameteriv __glGetObjectParameterivARB
+#define glLinkProgram __glLinkProgramARB
+#define glCreateProgramObject __glCreateProgramObjectARB
+#define glAttachObject __glAttachObjectARB
+#define glCompileShader __glCompileShaderARB
+#define glShaderSource __glShaderSourceARB
+#define glCreateShaderObject __glCreateShaderObjectARB
+#define glUniform1i __glUniform1iARB
+#define glUniform2f __glUniform2fARB
+#define glUniform1f __glUniform1fARB
+#define glUniform4f __glUniform4fARB
+#define glGetUniformLocation __glGetUniformLocationARB
+
+#elif CHOWDREN_USE_GLES1
+#include <SDL_opengles.h>
+
+#elif CHOWDREN_USE_GLES2
+#include <SDL_opengles2.h>
+
+#endif // CHOWDREN_USE_GL
+
+#undef TRANSPARENT
+
+#endif // CHOWDREN_IS_DESKTOP
+
+#endif // INCLUDE_GL_H

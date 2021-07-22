@@ -1,0 +1,1 @@
+g++ -static -mwindows launch_win.c -o dist/win32/launch.exe launch.res

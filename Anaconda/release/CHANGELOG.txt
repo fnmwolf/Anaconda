@@ -1,0 +1,130 @@
+Revision 9b4e8777c4a6, RC2:
+- Fixed object selection list issues (caused problems with Fast Loops)
+- Building now fails on missing extensions (partially implemented extensions 
+  will still work though)
+- All .ttf fonts are now loaded from the 'fonts' folder at runtime
+- Included directories/files can now be specified. See README.txt.
+- Added automatic copying of custom extensions. See README.txt.
+- Added signhelper.py tool for using codesign on OS X
+- Added a number of examples
+- New extensions (e.g. Lacewing client)
+- Fixed resizing issue on Linux
+- Fixed problem with blank windows on rubbish Intel cards
+- Fix "no disk" error on Windows
+- Fixed INI++ bugs
+- Made native extension list modifiable
+
+Revision 308cfdfac4b5, RC1:
+- Add OS X/Windows icons
+- Make OS X runtime 10.4 compatible
+- Remove exporter console window - errors appear in message boxes
+- Improvements to extensions (e.g. INI++)
+- Fixed a major bug related to the Active object and automatic rotation
+- Bug fixes
+
+Revision abca4fca96fd:
+- Fix fullscreen on OS X
+- Fix INI++ auto-saving
+- Fix some EditBoxSel and TimeX bugs
+- Fix shaders
+
+Revision 789c8402291e:
+- Fix whiteband
+- Fix end-of-application issues
+- Fix caption for non-ASCII strings
+- Fix alpha blending in transitions
+
+Revision 4c397bb09243:
+- Fix OS X Lion compatibility
+- Fix critical zip bug
+- Fix hashlib import bug
+
+Revision 36a53c9312b8:
+- Fix permissions on Linux, OS X (applications are now zipped)
+- Fix dependency issues on all platforms
+- Remove unneeded dependencies
+- Switch to stb_image for image loading
+- Add new extensions (see extension repository)
+- Fix bug missing KcButton
+- Fix Active Picture leaking into the native actions
+- Other bugs fixed
+- etc.
+
+Revision "demo release party":
+- First demo release
+- Again, many fixes and new extensions.
+- Switch to Mercurial for revision numbers
+
+Revision 8:
+- A load of fixes and new extensions. I haven't kept count, but a lot.
+
+Revision 7:
+- Load/general optimizations
+- A lot of bugfixes
+- Frame transitions enabled now
+- Other stuff
+
+Revision 6:
+- A few new optimizations
+- The Cursor object has been implemented.
+- A new Anaconda shaders extension. Contributions (especially in regards to
+  the logo) are definitely welcome! See the example in the Examples folder.
+- Bugfixes
+
+Merry Christmas and a happy New Year! ;-)
+
+Revision 5:
+- Lots of optimizations (thanks a lot to Bruto for his very well-made,
+  but performance-hungry game :-)
+  - The INI object now uses pure C to parse files
+  - Some data loading routines have been optimized in C
+  - Frames are delay-loaded, so the initial startup-time is faster
+- Bugfixes
+- Missing counter features implemented
+- Fixed objects being destroyed even though they had "On object clicked"
+  conditions
+- Stand-alones have now switched to an executable + data directory structure
+  to improve startup load times (for Linux and Windows, but Mac has also
+  changed it's build system, even though it still uses the Resource directory). 
+  This also means that you should place your Splash.png file in the data 
+  directory.
+- Done some initial INI++ work, still waiting for Jack to help me out.
+
+Revision 4:
+- Active System Box implemented
+- A lot of performance improvements
+- <insert stuff I've forgot to mention here ;-)>
+
+Revision 3:
+- Fixed Ini bug.
+
+Revision 2:
+- Collision bugs fixed
+- Disabled MIDI support for now
+- Other bug fixes
+- File object fully implemented now (apart from multi-file selections)
+- Active System Box mostly implemented now, but missing events
+
+2/12/2010:
+- Fixed a lot of bugs
+- Removed the console on Windows
+- Now supports stretching
+- Reduced size of Mac and Windows runtimes
+- A lot of other things I can't quite remember :-)
+
+23/11/2010:
+- Added logging. A "anaconda.log" file will be created on launch.
+- Implemented String Parser 2.
+- Implemented the Get object.
+- Fixed an index error for the List object.
+- Fixed a memory leak in strings.
+- Fixed an OpenAL buffer memory leak
+- Added a loading screen. Place a "Splash.png" right next to your executable
+  (or for Mac OS X, in the "Resources" folder), and a loading screen with
+  spinning dots will appear on startup.
+
+17/11/2010:
+- Fixed "object clicked" bugs.
+- Fixed a sound playing leak.
+- Improved performance by caching pure-Python ACEs.
+- Fixed a bounce bug.

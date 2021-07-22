@@ -1,0 +1,1 @@
+python build_profile.py build_ext -f --inplace
