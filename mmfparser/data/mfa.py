@@ -256,10 +256,9 @@ class ChunkList(DataLoader):
             id = reader.readByte(True)
             if id == 0:
                 break
-            data = reader.readReader(reader.readInt(True))
-            if id not in CHUNK_LOADERS:
-                print 'Chunk with id', id, 'could not be loaded in', self.parent
-                continue
+            data = reader.readReader(reader.readInt(True)) 
+        else:
+            data = reader.readReader(reader.readInt(False))
             items.append(self.new(CHUNK_LOADERS[id], data))
         size = reader.tell() - start
         reader.seek(start)

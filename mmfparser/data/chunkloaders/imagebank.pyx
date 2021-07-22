@@ -357,6 +357,7 @@ cdef class ImageItem(DataLoader):
         tuple transparent
 
         ByteReader reader
+        ByteReader rawImage
         size_t pos
 
     cpdef initialize(self):
@@ -431,79 +432,37 @@ cdef class ImageItem(DataLoader):
             self.transparent = newReader.readColor()
 
         cdef int decompressed
-        if self.flags['LZX']:
-            decompressed = newReader.readInt()
-            newReader = ByteReader(zlib.decompress(newReader.read()))
-
-        cdef BasePoint pointClass
-        cdef char * data
-        cdef int width, height
-        width, height = self.width, self.height
-        if self.graphicMode == 2:
-            pointClass = index_point
-            self.indexed = True
-        elif self.graphicMode == 3:
-            pointClass = index_point
-            self.indexed = True
-        elif self.graphicMode == 4: # 16 million colors
-            pointClass = point_instance
-            self.indexed = False
-        elif self.graphicMode == 6: # 32768 colors
-            pointClass = fifteen_point
-            self.indexed = False
-        elif self.graphicMode == 7: # 65536 colors
-            pointClass = sixteen_point
-            self.indexed = False
-        else:
-            import code
-            code.interact(local = locals())
-            newReader.openEditor()
-            raise NotImplementedError('unknown graphic mode: %s'
-                                      % self.graphicMode)
-
-        readerData = newReader.read()
-        data = readerData
-        cdef int alphaSize, imageSize
-        if self.flags['RLE'] or self.flags['RLEW'] or self.flags['RLET']:
-            image, bytesRead = read_rle(data, width, height, pointClass)
-            alphaSize = size - bytesRead
-        else:
-            image, imageSize = read_rgb(data, width, height, pointClass)
-            alphaSize = size - imageSize
-        self.image = image
-
-        if self.flags['Alpha']:
-            pad = (alphaSize - width * height) / height
-            self.alpha = read_alpha(data, width, height, size - alphaSize)
-    
+        data = newReader.read()
+        self.rawImage=ByteReader()
+        self.rawImage.write(data)
+        
     def write(self, reader):
+        self.flags['LZX'] = True
         cdef bint debug = self.settings.get('debug', False)
-        dataReader = ByteReader()
-
-        dataReader.write(generate_image(self))
-        if self.alpha is not None:
-            dataReader.write(generate_alpha(self))
-
+        compressedPeen = zlibdata.compressImageLZX(self.rawImage)
         newReader = ByteReader()
         newReader.writeInt(self.checksum)
         newReader.writeInt(self.references)
-        newReader.writeInt(len(dataReader))
+        if (self.flags['LZX'] == False):
+            newReader.writeInt(len(self.rawImage))
+        if (self.flags['LZX'] == True):
+            newReader.writeInt(len(compressedPeen) + 4, True)
         newReader.writeShort(self.width)
         newReader.writeShort(self.height)
-        newReader.writeByte(4)#self.graphicMode)
-        # XXX simple hack
-        if self.flags['Alpha']:
-            newReader.writeByte(16)
-        else:
-            newReader.writeByte(0)
+        newReader.writeByte(self.graphicMode)
+        newReader.writeByte(self.flags.getFlags())
         newReader.write(<bytes>('\x00\x00'))
         newReader.writeShort(self.xHotspot)
         newReader.writeShort(self.yHotspot)
         newReader.writeShort(self.actionX)
         newReader.writeShort(self.actionY)
         newReader.writeColor(self.transparent or (0, 0, 0))
-        newReader.writeReader(dataReader)
-
+        if (self.flags['LZX'] == False):
+            newReader.writeReader(self.rawImage)
+        if (self.flags['LZX'] == True):
+            newReader.writeInt(len(self.rawImage))
+        if (self.flags['LZX'] == True):
+            newReader.writeReader(compressedPeen)
         reader.writeInt(self.handle)
         if debug:
             reader.writeReader(newReader)

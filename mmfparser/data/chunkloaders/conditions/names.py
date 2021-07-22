@@ -197,7 +197,7 @@ extensionDict = {
     -39 : 'IsUnderline',
     -40 : 'IsStrikeOut',
     -41 : 'OnObjectLoop',
-    -42 : 'CompareAlterableValueInt',
-    -43 : 'CompareAlterableValueDouble'
+    -42 : 'CompareAlterableValue',
+    -43 : 'CompareAlterableValue'
 }
 

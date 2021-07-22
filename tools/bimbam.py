@@ -26,15 +26,14 @@ from mmfparser.bytereader import ByteReader
 
 import sys
 import os
+import string
 
 def main():
-    print 'Bimbam tool by Mathias Kaerlev'
-    print 'ONLY for use on your own applications.'
+    print 'Anaconda Decompiler'
+    print 'ONLY for educational purpose, or game datamining ;)'
     print ''
-
     input = sys.argv[1]
-    output = sys.argv[2]
-
+    output = 'C:\Out'
     fp = ByteReader(open(input, 'rb'))
     if input.endswith('.ccn'):
         newGame = GameData(fp)
@@ -57,13 +56,21 @@ def main():
 
     def out(value):
         print value
-
+    print 'Translating MFA...'
     newMfa = translate(newGame, print_func = out)
-    out_path = os.path.join(output, 'out.mfa')
+    s = newGame.name
+    whitelist = string.letters + string.digits
+    new_s = ''
+    for char in s:
+        if char in whitelist:
+            new_s += char
+    print new_s
+    out_path = os.path.join(output, new_s + '-compressed.mfa')
+    print 'Writing MFA...'
     newMfa.write(ByteReader(open(out_path, 'wb')))
 
     # newMfa = MFA(ByteReader(open(out_path, 'rb')))
-    print 'Finished!'
+    print 'Decompilation Finished!'
 
 if __name__ == '__main__':
     main()

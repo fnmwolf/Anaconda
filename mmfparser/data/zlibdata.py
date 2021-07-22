@@ -33,3 +33,16 @@ def compress(data):
     reader.writeInt(len(compressed))
     reader.write(compressed)
     return reader
+
+def compressImageLZX(data):
+    reader = ByteReader()
+    compressed = zlib.compress(str(data))
+    #print 'Compressing LZX'
+    #print 'input size'
+    #print len(data)
+    #print 'output size'
+    #print len(compressed)
+    #reader.writeInt(len(data))
+    #reader.writeInt(len(compressed))
+    reader.write(compressed)
+    return reader

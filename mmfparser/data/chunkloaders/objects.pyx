@@ -30,7 +30,6 @@ cdef class AlterableValues(DataLoader):
     cpdef read(self, ByteReader reader):
         self.items = [reader.readInt()
             for _ in xrange(reader.readShort(True))]
-
     def write(self, ByteReader reader):
         reader.writeShort(len(self.items))
         for item in self.items:
@@ -909,7 +908,8 @@ cdef class ObjectCommon(DataLoader):
             reader.skipBytes(2) # "free"
             extensionOffset = reader.readShort()
             counterOffset = reader.readShort()
-            self.flags.setFlags(reader.readInt(True))
+            self.flags.setFlags(reader.readShort(True))
+            reader.readShort()
 
             end = reader.tell() + 8 * 2
 

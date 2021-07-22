@@ -29,6 +29,7 @@ from mmfparser.data.chunkloaders.common cimport _AceCommon
 HEADER = 'ER>>'
 EVENT_COUNT = 'ERes'
 EVENTGROUP_DATA = 'ERev'
+EXTENSION_DATA = 'ERop'
 END = '<<ER'
 
 ACE_FLAGS = BitDict(
@@ -206,6 +207,8 @@ cdef class Condition(_AceCommon):
     def write(self, ByteReader reader):
         newReader = ByteReader()
         newReader.writeShort(self.objectType)
+        if self.num == -42:
+            self.num = -27
         newReader.writeShort(self.num)
         newReader.writeShort(self.objectInfo, True)
         newReader.writeShort(self.objectInfoList)
@@ -342,6 +345,19 @@ cdef class Events(DataLoader):
                         self.items.append(self.new(EventGroup, reader))
                         if reader.tell() >= endPosition:
                             break
+
+            elif identifier == EXTENSION_DATA:
+                size = reader.readInt()
+#               if java:
+#                   numberOfGroups = reader.readInt()
+#                   self.items.extend([self.new(EventGroup, reader)
+#                       for _ in xrange(numberOfGroups)])
+#               else:
+#                   endPosition = reader.tell() + size
+#                   while 1:
+#                       self.items.append(self.new(EventGroup, reader))
+#                       if reader.tell() >= endPosition:
+#                           break
 
             elif identifier == END:
                 break

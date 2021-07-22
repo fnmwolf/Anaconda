@@ -57,16 +57,25 @@ cdef class Chunk(DataLoader):
         if (flags & 1) != 0:
             IF USE_TRANS:
                 if (flags & 2) != 0:
-                    transform(&data.buffer[data.pos] + 4, data.size() - 4,
-                              self.settings['trans'])
+                  
+                    #print "transforming chunk 1"
+                    if self.id & 1 == 1:
+                       if self.settings['build'] > 284:
+                          data.buffer[4]^=(self.id&0xFF)^(self.id>>0x8)                    
+                    transform(&data.buffer[data.pos]+4, data.size()-4,self.settings['trans'])
+                           
             if old:
                 data = onepointfive.decompress(data)
             else:
                 data = zlibdata.decompress(data)
         elif (flags & 2) != 0:
             IF USE_TRANS:
-                transform(&data.buffer[data.pos], data.size(),
-                          self.settings['trans'])
+               
+                if self.id & 1 == 1:
+                   if self.settings['build'] > 284:
+                      data.buffer[0]^=(self.id&0xFF)^(self.id>>0x8)   
+                transform(&data.buffer[data.pos], data.size(), self.settings['trans'])
+				
 
         cdef type loaderClass
         try:
@@ -113,8 +122,7 @@ IF USE_TRANS:
 
         return ret
 
-    cpdef bytes create_transform(bytes editor, bytes name, bytes copyright,
-                                 bint is_ascii):
+    cpdef bytes create_transform(bytes editor, bytes name, bytes copyright, bint is_ascii, int build):
         cdef bytes ret
         if is_ascii:
             ret = (editor + name + copyright)
@@ -123,9 +131,16 @@ IF USE_TRANS:
             name = name.decode('utf-8').encode('utf-16-le')
             copyright = copyright.decode('utf-8').encode('utf-16-le')
             ret = b''
-            ret += create_transform_part(editor)
-            ret += create_transform_part(name)
-            ret += create_transform_part(copyright)
+            if build> 284:
+               print "creating new data transform"
+               ret += create_transform_part(name)
+               ret += create_transform_part(copyright)
+               ret += create_transform_part(editor)
+            else:
+                ret += create_transform_part(editor)
+                ret += create_transform_part(name)
+                ret += create_transform_part(copyright)
+            
 
         ret = ret[:128]
         cdef unsigned int l = len(ret)
@@ -158,7 +173,7 @@ cdef class ChunkList(DataLoader):
             if newChunk.id == LAST:
                 break
             IF USE_TRANS:
-                if newChunk.id == 8750 and self.settings['build'] >= 284:
+                if newChunk.id == 8750 and self.settings['build'] >= 281:
                     # EditorFilename
                     editor = newChunk.loader.value
                     name = self.getId(8740).loader.value
@@ -167,9 +182,7 @@ cdef class ChunkList(DataLoader):
                         copyright_text = b''
                     else:
                         copyright_text = copyright.loader.value
-                    trans = create_transform(editor, name, copyright_text,
-                                             not self.settings.get('unicode',
-                                                                   False))
+                    trans = create_transform(editor, name, copyright_text, not self.settings.get('unicode',False),self.settings['build'])
                     parent.settings['trans'] = trans
 
             # elif newChunk.id == APPTARGETFILENAME:
