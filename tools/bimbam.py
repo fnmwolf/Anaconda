@@ -33,7 +33,7 @@ def main():
     print 'ONLY for educational purpose, or game datamining ;)'
     print ''
     input = sys.argv[1]
-    output = 'C:\Out'
+    output = sys.argv[2]
     fp = ByteReader(open(input, 'rb'))
     if input.endswith('.ccn'):
         newGame = GameData(fp)

@@ -1,11 +1,7 @@
-@echo off
+@echo on
 TITLE Decompiling...
+call cd %~dp0
 call python build.py build_ext --inplace
-call mkdir C:\Out
-call cd %~dp0Input
-for /R %%f in (*.exe) do (
 cd "%~dp0tools" 
-"C:\Python27\python.exe" bimbam.py "%%f"
-)
+"C:\Python2718\python.exe" bimbam.py %1 %2
 ECHO Done!
-PAUSE
