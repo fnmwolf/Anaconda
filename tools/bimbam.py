@@ -32,8 +32,15 @@ def main():
     print 'Anaconda Decompiler'
     print 'ONLY for educational purpose, or game datamining ;)'
     print ''
-    input = sys.argv[1]
-    output = sys.argv[2]
+    try:
+        input = sys.argv[1]
+    except IndexError:
+        print 'Usage: python bimbam.py yourGameExe.exe'
+        exit()
+    try:
+        output = sys.argv[2]
+    except IndexError:
+        output = 'C:\Out'
     fp = ByteReader(open(input, 'rb'))
     if input.endswith('.ccn'):
         newGame = GameData(fp)
