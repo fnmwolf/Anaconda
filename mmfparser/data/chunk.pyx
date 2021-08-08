@@ -60,7 +60,7 @@ cdef class Chunk(DataLoader):
                   
                     #print "transforming chunk 1"
                     if self.id & 1 == 1:
-                       if self.settings['build'] > 284:
+                       if self.settings['build'] > 285:
                           data.buffer[4]^=(self.id&0xFF)^(self.id>>0x8)                    
                     transform(&data.buffer[data.pos]+4, data.size()-4,self.settings['trans'])
                            
@@ -72,7 +72,7 @@ cdef class Chunk(DataLoader):
             IF USE_TRANS:
                
                 if self.id & 1 == 1:
-                   if self.settings['build'] > 284:
+                   if self.settings['build'] > 285:
                       data.buffer[0]^=(self.id&0xFF)^(self.id>>0x8)   
                 transform(&data.buffer[data.pos], data.size(), self.settings['trans'])
 				
@@ -131,7 +131,7 @@ IF USE_TRANS:
             name = name.decode('utf-8').encode('utf-16-le')
             copyright = copyright.decode('utf-8').encode('utf-16-le')
             ret = b''
-            if build> 284:
+            if build > 285:
                print "creating new data transform"
                ret += create_transform_part(name)
                ret += create_transform_part(copyright)

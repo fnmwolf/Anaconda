@@ -1365,7 +1365,7 @@ static char __pyx_k_creating_new_data_transform[] = "creating new data transform
 static char __pyx_k_mmfparser_data_chunkloaders[] = "mmfparser.data.chunkloaders";
 static char __pyx_k_ADDITIONAL_FRAMEITEMINSTANCE[] = "ADDITIONAL_FRAMEITEMINSTANCE";
 static char __pyx_k_unsupported_compression_flag_s[] = "unsupported compression flag: %s";
-static char __pyx_k_C_LAPTOP_Downloads_AnacondaDev_b[] = "C:\\LAPTOP\\Downloads\\AnacondaDev-b2c583a408de197bd210236d50a501047dce6853\\AnacondaDev-b2c583a408de197bd210236d50a501047dce6853\\mmfparser\\data\\chunk.pyx";
+static char __pyx_k_E_LAPTOP_Downloads_AnalCondom_Pl[] = "E:\\LAPTOP\\Downloads\\AnalCondom-Plus - Copy\\AnacondaDev - Compression\\mmfparser\\data\\chunk.pyx";
 static char __pyx_k_Last_chunk_not_found_in_ChunkLis[] = "Last chunk not found in ChunkList";
 static char __pyx_k_mmfparser_data_chunkloaders_onep[] = "mmfparser.data.chunkloaders.onepointfive";
 static PyObject *__pyx_kp_b_;
@@ -1395,7 +1395,6 @@ static PyObject *__pyx_n_s_BINARYFILES;
 static PyObject *__pyx_n_s_BLURAYFRAMEOPTIONS;
 static PyObject *__pyx_n_s_BinaryFiles;
 static PyObject *__pyx_n_s_COPYRIGHT;
-static PyObject *__pyx_kp_s_C_LAPTOP_Downloads_AnacondaDev_b;
 static PyObject *__pyx_n_s_Chunk;
 static PyObject *__pyx_n_s_ChunkList;
 static PyObject *__pyx_n_s_Copyright;
@@ -1407,6 +1406,7 @@ static PyObject *__pyx_n_s_EXTDATA;
 static PyObject *__pyx_n_s_EXTENSIONS;
 static PyObject *__pyx_n_s_EXTENSIONS2;
 static PyObject *__pyx_n_s_EXTPATH;
+static PyObject *__pyx_kp_s_E_LAPTOP_Downloads_AnalCondom_Pl;
 static PyObject *__pyx_n_s_EditorFilename;
 static PyObject *__pyx_n_s_Events;
 static PyObject *__pyx_n_s_Exception;
@@ -1583,7 +1583,7 @@ static PyObject *__pyx_n_s_zlibdata;
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_281;
-static PyObject *__pyx_int_284;
+static PyObject *__pyx_int_285;
 static PyObject *__pyx_int_4386;
 static PyObject *__pyx_int_8738;
 static PyObject *__pyx_int_8739;
@@ -2032,7 +2032,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_5Chunk_read(struct __pyx_obj_9m
  * 
  *                     #print "transforming chunk 1"
  *                     if self.id & 1 == 1:             # <<<<<<<<<<<<<<
- *                        if self.settings['build'] > 284:
+ *                        if self.settings['build'] > 285:
  *                           data.buffer[4]^=(self.id&0xFF)^(self.id>>0x8)
  */
       __pyx_t_6 = (((__pyx_v_self->id & 1) == 1) != 0);
@@ -2041,7 +2041,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_5Chunk_read(struct __pyx_obj_9m
         /* "mmfparser\data\chunk.pyx":63
  *                     #print "transforming chunk 1"
  *                     if self.id & 1 == 1:
- *                        if self.settings['build'] > 284:             # <<<<<<<<<<<<<<
+ *                        if self.settings['build'] > 285:             # <<<<<<<<<<<<<<
  *                           data.buffer[4]^=(self.id&0xFF)^(self.id>>0x8)
  *                     transform(&data.buffer[data.pos]+4, data.size()-4,self.settings['trans'])
  */
@@ -2051,7 +2051,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_5Chunk_read(struct __pyx_obj_9m
         }
         __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_self->__pyx_base.settings, __pyx_n_s_build); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_int_284, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_int_285, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -2059,7 +2059,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_5Chunk_read(struct __pyx_obj_9m
 
           /* "mmfparser\data\chunk.pyx":64
  *                     if self.id & 1 == 1:
- *                        if self.settings['build'] > 284:
+ *                        if self.settings['build'] > 285:
  *                           data.buffer[4]^=(self.id&0xFF)^(self.id>>0x8)             # <<<<<<<<<<<<<<
  *                     transform(&data.buffer[data.pos]+4, data.size()-4,self.settings['trans'])
  * 
@@ -2074,7 +2074,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_5Chunk_read(struct __pyx_obj_9m
       __pyx_L6:;
 
       /* "mmfparser\data\chunk.pyx":65
- *                        if self.settings['build'] > 284:
+ *                        if self.settings['build'] > 285:
  *                           data.buffer[4]^=(self.id&0xFF)^(self.id>>0x8)
  *                     transform(&data.buffer[data.pos]+4, data.size()-4,self.settings['trans'])             # <<<<<<<<<<<<<<
  * 
@@ -2206,7 +2206,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_5Chunk_read(struct __pyx_obj_9m
  *             IF USE_TRANS:
  * 
  *                 if self.id & 1 == 1:             # <<<<<<<<<<<<<<
- *                    if self.settings['build'] > 284:
+ *                    if self.settings['build'] > 285:
  *                       data.buffer[0]^=(self.id&0xFF)^(self.id>>0x8)
  */
     __pyx_t_6 = (((__pyx_v_self->id & 1) == 1) != 0);
@@ -2215,7 +2215,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_5Chunk_read(struct __pyx_obj_9m
       /* "mmfparser\data\chunk.pyx":75
  * 
  *                 if self.id & 1 == 1:
- *                    if self.settings['build'] > 284:             # <<<<<<<<<<<<<<
+ *                    if self.settings['build'] > 285:             # <<<<<<<<<<<<<<
  *                       data.buffer[0]^=(self.id&0xFF)^(self.id>>0x8)
  *                 transform(&data.buffer[data.pos], data.size(), self.settings['trans'])
  */
@@ -2225,7 +2225,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_5Chunk_read(struct __pyx_obj_9m
       }
       __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_self->__pyx_base.settings, __pyx_n_s_build); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = PyObject_RichCompare(__pyx_t_1, __pyx_int_284, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyObject_RichCompare(__pyx_t_1, __pyx_int_285, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -2233,7 +2233,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_5Chunk_read(struct __pyx_obj_9m
 
         /* "mmfparser\data\chunk.pyx":76
  *                 if self.id & 1 == 1:
- *                    if self.settings['build'] > 284:
+ *                    if self.settings['build'] > 285:
  *                       data.buffer[0]^=(self.id&0xFF)^(self.id>>0x8)             # <<<<<<<<<<<<<<
  *                 transform(&data.buffer[data.pos], data.size(), self.settings['trans'])
  * 
@@ -2248,7 +2248,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_5Chunk_read(struct __pyx_obj_9m
     __pyx_L9:;
 
     /* "mmfparser\data\chunk.pyx":77
- *                    if self.settings['build'] > 284:
+ *                    if self.settings['build'] > 285:
  *                       data.buffer[0]^=(self.id&0xFF)^(self.id>>0x8)
  *                 transform(&data.buffer[data.pos], data.size(), self.settings['trans'])             # <<<<<<<<<<<<<<
  * 
@@ -3595,7 +3595,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_create_transform(PyObject *__py
  *             name = name.decode('utf-8').encode('utf-16-le')
  *             copyright = copyright.decode('utf-8').encode('utf-16-le')             # <<<<<<<<<<<<<<
  *             ret = b''
- *             if build> 284:
+ *             if build > 285:
  */
     if (unlikely(__pyx_v_copyright == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%s'", "decode");
@@ -3614,7 +3614,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_create_transform(PyObject *__py
  *             name = name.decode('utf-8').encode('utf-16-le')
  *             copyright = copyright.decode('utf-8').encode('utf-16-le')
  *             ret = b''             # <<<<<<<<<<<<<<
- *             if build> 284:
+ *             if build > 285:
  *                print "creating new data transform"
  */
     __Pyx_INCREF(__pyx_kp_b_);
@@ -3623,16 +3623,16 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_create_transform(PyObject *__py
     /* "mmfparser\data\chunk.pyx":134
  *             copyright = copyright.decode('utf-8').encode('utf-16-le')
  *             ret = b''
- *             if build> 284:             # <<<<<<<<<<<<<<
+ *             if build > 285:             # <<<<<<<<<<<<<<
  *                print "creating new data transform"
  *                ret += create_transform_part(name)
  */
-    __pyx_t_1 = ((__pyx_v_build > 284) != 0);
+    __pyx_t_1 = ((__pyx_v_build > 285) != 0);
     if (__pyx_t_1) {
 
       /* "mmfparser\data\chunk.pyx":135
  *             ret = b''
- *             if build> 284:
+ *             if build > 285:
  *                print "creating new data transform"             # <<<<<<<<<<<<<<
  *                ret += create_transform_part(name)
  *                ret += create_transform_part(copyright)
@@ -3640,7 +3640,7 @@ static PyObject *__pyx_f_9mmfparser_4data_5chunk_create_transform(PyObject *__py
       if (__Pyx_PrintOne(0, __pyx_kp_s_creating_new_data_transform) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
       /* "mmfparser\data\chunk.pyx":136
- *             if build> 284:
+ *             if build > 285:
  *                print "creating new data transform"
  *                ret += create_transform_part(name)             # <<<<<<<<<<<<<<
  *                ret += create_transform_part(copyright)
@@ -8626,7 +8626,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_BLURAYFRAMEOPTIONS, __pyx_k_BLURAYFRAMEOPTIONS, sizeof(__pyx_k_BLURAYFRAMEOPTIONS), 0, 0, 1, 1},
   {&__pyx_n_s_BinaryFiles, __pyx_k_BinaryFiles, sizeof(__pyx_k_BinaryFiles), 0, 0, 1, 1},
   {&__pyx_n_s_COPYRIGHT, __pyx_k_COPYRIGHT, sizeof(__pyx_k_COPYRIGHT), 0, 0, 1, 1},
-  {&__pyx_kp_s_C_LAPTOP_Downloads_AnacondaDev_b, __pyx_k_C_LAPTOP_Downloads_AnacondaDev_b, sizeof(__pyx_k_C_LAPTOP_Downloads_AnacondaDev_b), 0, 0, 1, 0},
   {&__pyx_n_s_Chunk, __pyx_k_Chunk, sizeof(__pyx_k_Chunk), 0, 0, 1, 1},
   {&__pyx_n_s_ChunkList, __pyx_k_ChunkList, sizeof(__pyx_k_ChunkList), 0, 0, 1, 1},
   {&__pyx_n_s_Copyright, __pyx_k_Copyright, sizeof(__pyx_k_Copyright), 0, 0, 1, 1},
@@ -8638,6 +8637,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_EXTENSIONS, __pyx_k_EXTENSIONS, sizeof(__pyx_k_EXTENSIONS), 0, 0, 1, 1},
   {&__pyx_n_s_EXTENSIONS2, __pyx_k_EXTENSIONS2, sizeof(__pyx_k_EXTENSIONS2), 0, 0, 1, 1},
   {&__pyx_n_s_EXTPATH, __pyx_k_EXTPATH, sizeof(__pyx_k_EXTPATH), 0, 0, 1, 1},
+  {&__pyx_kp_s_E_LAPTOP_Downloads_AnalCondom_Pl, __pyx_k_E_LAPTOP_Downloads_AnalCondom_Pl, sizeof(__pyx_k_E_LAPTOP_Downloads_AnalCondom_Pl), 0, 0, 1, 0},
   {&__pyx_n_s_EditorFilename, __pyx_k_EditorFilename, sizeof(__pyx_k_EditorFilename), 0, 0, 1, 1},
   {&__pyx_n_s_Events, __pyx_k_Events, sizeof(__pyx_k_Events), 0, 0, 1, 1},
   {&__pyx_n_s_Exception, __pyx_k_Exception, sizeof(__pyx_k_Exception), 0, 0, 1, 1},
@@ -8854,7 +8854,7 @@ static int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__4 = PyTuple_Pack(3, __pyx_n_s_klass, __pyx_n_s_value, __pyx_n_s_newLoader); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
-  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_C_LAPTOP_Downloads_AnacondaDev_b, __pyx_n_s_makeValueChunk, 29, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_E_LAPTOP_Downloads_AnalCondom_Pl, __pyx_n_s_makeValueChunk, 29, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "mmfparser\data\chunk.pyx":424
  * 
@@ -8866,7 +8866,7 @@ static int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__6 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_key); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 424; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_C_LAPTOP_Downloads_AnacondaDev_b, __pyx_n_s_getitem, 424, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 424; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_E_LAPTOP_Downloads_AnalCondom_Pl, __pyx_n_s_getitem, 424, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 424; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -8879,7 +8879,7 @@ static int __Pyx_InitGlobals(void) {
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_int_281 = PyInt_FromLong(281); if (unlikely(!__pyx_int_281)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_int_284 = PyInt_FromLong(284); if (unlikely(!__pyx_int_284)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_285 = PyInt_FromLong(285); if (unlikely(!__pyx_int_285)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_int_4386 = PyInt_FromLong(4386); if (unlikely(!__pyx_int_4386)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_int_8738 = PyInt_FromLong(8738); if (unlikely(!__pyx_int_8738)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_int_8739 = PyInt_FromLong(8739); if (unlikely(!__pyx_int_8739)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
