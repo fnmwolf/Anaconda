@@ -40,9 +40,23 @@ class Transition(DataLoader):
         parameterOffset = reader.readInt()
         parameterSize = reader.readInt()
         reader.seek(currentPosition + nameOffset)
-        self.moduleFile = reader.readString()
+        self.moduleFile = str(reader.readUnicodeString())
+        #print 'transition module'
+        #print self.module
+        #print 'transition name'
+        #print self.name
+        #print 'transition duration'
+        #print self.duration
+        #print 'transition flags'
+        #print self.flags
+        #print 'transition color'
+        #print self.color
+        #print 'transition dll'
+        #print self.moduleFile
         reader.seek(currentPosition + parameterOffset)
         self.parameterData = reader.read(parameterSize)
+        #print 'transition parameterData'
+        #print self.parameterData
     
     def isStandard(self):
         return self.name == 'STDT'
