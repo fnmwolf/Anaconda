@@ -81,8 +81,13 @@ class PackData(DataLoader):
         reader.seek(start + 16)
 
         self.formatVersion = reader.readInt() # actually hash?
-        checkDefault(reader, reader.readInt(), 0)
-        checkDefault(reader, reader.readInt(), 0)
+        # checkDefault(reader, reader.readInt(), 0)
+        # checkDefault(reader, reader.readInt(), 0)
+
+        # i am pretty sure checkDefault() is useless
+        # but we still need to skip forward 2 ints, this is a dirty way of doing that
+        count = reader.readInt()
+        count = reader.readInt()
         count = reader.readInt()
         offset = reader.tell()
         for _ in xrange(count):
