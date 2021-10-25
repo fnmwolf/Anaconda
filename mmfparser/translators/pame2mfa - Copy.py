@@ -534,10 +534,10 @@ def translate(game, print_func = dummy_out):
 
         for name, parameter in loop_parameters():
             if name == 'GROUP':
-               # print "loopname GROUP"
+                print "loopname GROUP"
                 offset = parameter.offset
-               # print "offset:"
-               # print offset
+                print "offset:"
+                print offset
                 if onepointfive:
                     offset += 2
                 else:
@@ -549,12 +549,7 @@ def translate(game, print_func = dummy_out):
 
         for name, parameter in loop_parameters():
             if name == 'GROUPOINTER':
-                parameter.id = 0
-                if (parameter.pointer > 0):
-                    try:
-                        parameter.id = groups[parameter.pointer]
-                    except KeyError:
-                        parameter.id = groups[parameter.pointer - 2] #automatically apply this patch if necessary
+                parameter.id = groups[parameter.pointer]
                 parameter.savedPointer = parameter.pointer = 0
 
         newFrame.chunks = mfa.new(ChunkList)
