@@ -331,7 +331,7 @@ def translate(game, print_func = dummy_out):
                 newLoader.width = rtf.width
                 newLoader.height = rtf.height
                 newLoader.value = rtf.value
-                newLoader.color = rtf.color
+                newLoader.color = rtf.backColor #typo fixed
                 newLoader.flags = rtf.options.getFlags()
             elif item.objectType == SUBAPPLICATION:
                 subApplication = itemLoader.subApplication
