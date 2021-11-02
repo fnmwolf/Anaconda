@@ -276,8 +276,6 @@ cdef class EventGroup(DataLoader):
         newReader.writeByte(len(self.actions), True)
         newReader.writeShort(self.flags.getFlags(), True)
         newReader.writeShort(self.is_restricted)
-        if self.restrictCpt > 100:
-            self.restrictCpt = 0
         newReader.writeShort(self.restrictCpt)
         newReader.writeShort(self.identifier)
         newReader.writeShort(self.undo)

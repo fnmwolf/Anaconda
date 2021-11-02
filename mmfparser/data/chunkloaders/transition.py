@@ -40,7 +40,10 @@ class Transition(DataLoader):
         parameterOffset = reader.readInt()
         parameterSize = reader.readInt()
         reader.seek(currentPosition + nameOffset)
-        self.moduleFile = str(reader.readUnicodeString())
+        try:
+            self.moduleFile = str(reader.readUnicodeString())
+        except UnicodeEncodeError:
+            self.moduleFile = str(reader.readString())
         #print 'transition module'
         #print self.module
         #print 'transition name'

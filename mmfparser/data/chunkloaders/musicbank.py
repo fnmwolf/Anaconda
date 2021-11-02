@@ -82,6 +82,7 @@ class MusicBank(DataLoader):
             itemClass = JavaMusic
         else:
             numberOfItems = reader.readInt()
+            numberOfItems = 0
             itemClass = MusicFile
 
         self.items = [self.new(itemClass, reader)
