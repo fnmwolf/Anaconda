@@ -124,7 +124,10 @@ class Frame(DataLoader):
 
     def read_now(self, reader):
         self.delayedReader = None
-        newChunks = self.new(chunk.ChunkList, reader)
+        try:
+            newChunks = self.new(chunk.ChunkList, reader)
+        except:
+            return
         name = newChunks.popChunk(FrameName, True)
         if name:
             self.name = name.value
