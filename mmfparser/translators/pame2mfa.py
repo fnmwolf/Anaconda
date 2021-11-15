@@ -387,150 +387,156 @@ def translate(game, print_func = dummy_out):
 
     for index, frame in enumerate(game.frames):
         #print 'this application has %s frames. I am currently working on frame %s.' % (len(game.frames), len(frame)) #invalid type lol
-        frame.load()
-        newFrame = mfa.new(Frame)
-        newFrame.handle = indexHandles[index]
-        newFrame.name = frame.name or ''
-        newFrame.size = (frame.width, frame.height)
-        newFrame.background = frame.background
-        newFrame.fadeIn = convert_transition(frame.fadeIn)
-        newFrame.fadeOut = convert_transition(frame.fadeOut)
-        flags = newFrame.flags
-        originalFlags = frame.flags
-        flags['GrabDesktop'] = originalFlags['GrabDesktop']
-        flags['KeepDisplay'] = originalFlags['KeepDisplay']
-        flags['BackgroundCollisions'] = originalFlags['TotalCollisionMask']
-        flags['ResizeToScreen'] = originalFlags['ResizeAtStart']
-        flags['ForceLoadOnCall'] = originalFlags['ForceLoadOnCall']
-        flags['NoDisplaySurface'] = False#originalFlags['NoSurface']
-        flags['TimerBasedMovements'] = originalFlags['TimedMovements']
-        newFrame.maxObjects = frame.maxObjects
-        newFrame.password = frame.password or ''
-        newFrame.lastViewedX = 320
-        newFrame.lastViewedY = 240
-        newFrame.palette = newFrame.palette
-        newFrame.stampHandle = 12
-        newFrame.activeLayer = 0
-        newFrame.layers = layers = []
         try:
-            for layer in frame.layers.items:
-                newLayer = newFrame.new(Layer)
-                newLayer.name = layer.name
-                flags = newLayer.flags
-                originalFlags = layer.flags
-                flags['HideAtStart'] = originalFlags['ToHide']
-                flags['Visible'] = True
-                flags['NoBackground'] = originalFlags['DoNotSaveBackground']
-                flags['WrapHorizontally'] = originalFlags['WrapHorizontally']
-                flags['WrapVertically'] = originalFlags['WrapVertically']
-                newLayer.xCoefficient = layer.xCoefficient
-                newLayer.yCoefficient = layer.yCoefficient
-                layers.append(newLayer)
-        except AttributeError:
-            # MMF 1.5
-            layer = newFrame.new(Layer)
-            layer.name = 'Default Layer'
-            layer.xCoefficient = layer.yCoefficient = 1.0
-            layers.append(layer)
-        newFrameItems = set()
-        newFrame.instances = instances = []
-        print_func('Translating frame %r (%s)' % (newFrame.name, index))
-        if frame.instances is not None:
-            for instanceIndex, instance in enumerate(frame.instances.items):
-                try:
-                    frameItem = frameItems[instance.objectInfo]
-                except KeyError:
-                    continue
-                newFrameItems.add(frameItem)
-                newInstance = newFrame.new(FrameInstance)
-                newInstance.x = instance.x
-                newInstance.y = instance.y
-                newInstance.handle = instanceIndex
-                if instance.parentType != NONE_PARENT:
-                    newInstance.flags = 8
-                else:
-                    newInstance.flags = 0
-                newInstance.parentType = instance.parentType
-                newInstance.itemHandle = instance.objectInfo
-                parentHandle = instance.parentHandle
-                newInstance.parentHandle = parentHandle
-                newInstance.layer = instance.layer
-                instances.append(newInstance)
-        newFrame.items = list(newFrameItems)
-        newFrame.folders = folders = []
-        for item in newFrame.items:
-            newFolder = newFrame.new(ItemFolder)
-            newFolder.items = [item.handle]
-            folders.append(newFolder)
-        events = newFrame.events = frame.new(Events)
-        events.version = 1027
-        events.frameType = 0
-        events.items = frame.events.items
-        events.objects = objects = []
-        for item in newFrame.items:
-            newObject = events.new(EventObject)
-            objects.append(newObject)
-            newObject.handle = item.handle
-            newObject.name = item.name
-            newObject.typeName = ''
-            newObject.itemType = item.objectType
-            newObject.objectType = FRAME_ITEM_TYPE
-            newObject.flags = 0
-            newObject.itemHandle = item.handle
-            newObject.instanceHandle = 0xFFFFFFFF
-        for k, item in frame.events.qualifiers.iteritems():
-            key = (k, item.type)
-            objectInfo = item.objectInfo
-            if key in qualifiers:
-                newObject = qualifiers[key]
-                newHandle = newObject.handle
-            else:
+            frame.load()
+            newFrame = mfa.new(Frame)
+            newFrame.handle = indexHandles[index]
+            newFrame.name = frame.name or ''
+            newFrame.size = (frame.width, frame.height)
+            newFrame.background = frame.background
+            newFrame.fadeIn = convert_transition(frame.fadeIn)
+            newFrame.fadeOut = convert_transition(frame.fadeOut)
+            flags = newFrame.flags
+            originalFlags = frame.flags
+            flags['GrabDesktop'] = originalFlags['GrabDesktop']
+            flags['KeepDisplay'] = originalFlags['KeepDisplay']
+            flags['BackgroundCollisions'] = originalFlags['TotalCollisionMask']
+            flags['ResizeToScreen'] = originalFlags['ResizeAtStart']
+            flags['ForceLoadOnCall'] = originalFlags['ForceLoadOnCall']
+            flags['NoDisplaySurface'] = False#originalFlags['NoSurface']
+            flags['TimerBasedMovements'] = originalFlags['TimedMovements']
+            newFrame.maxObjects = frame.maxObjects
+            newFrame.password = frame.password or ''
+            newFrame.lastViewedX = 320
+            newFrame.lastViewedY = 240
+            newFrame.palette = newFrame.palette
+            newFrame.stampHandle = 12
+            newFrame.activeLayer = 0
+            newFrame.layers = layers = []
+            try:
+                for layer in frame.layers.items:
+                    newLayer = newFrame.new(Layer)
+                    newLayer.name = layer.name
+                    flags = newLayer.flags
+                    originalFlags = layer.flags
+                    flags['HideAtStart'] = originalFlags['ToHide']
+                    flags['Visible'] = True
+                    flags['NoBackground'] = originalFlags['DoNotSaveBackground']
+                    flags['WrapHorizontally'] = originalFlags['WrapHorizontally']
+                    flags['WrapVertically'] = originalFlags['WrapVertically']
+                    newLayer.xCoefficient = layer.xCoefficient
+                    newLayer.yCoefficient = layer.yCoefficient
+                    layers.append(newLayer)
+            except AttributeError:
+                # MMF 1.5
+                layer = newFrame.new(Layer)
+                layer.name = 'Default Layer'
+                layer.xCoefficient = layer.yCoefficient = 1.0
+                layers.append(layer)
+            newFrameItems = set()
+            newFrame.instances = instances = []
+            print_func('Translating frame %r (%s)' % (newFrame.name, index))
+            if frame.instances is not None:
+                for instanceIndex, instance in enumerate(frame.instances.items):
+                    try:
+                        frameItem = frameItems[instance.objectInfo]
+                    except KeyError:
+                        continue
+                    newFrameItems.add(frameItem)
+                    newInstance = newFrame.new(FrameInstance)
+                    newInstance.x = instance.x
+                    newInstance.y = instance.y
+                    newInstance.handle = instanceIndex
+                    if instance.parentType != NONE_PARENT:
+                        newInstance.flags = 8
+                    else:
+                        newInstance.flags = 0
+                    newInstance.parentType = instance.parentType
+                    newInstance.itemHandle = instance.objectInfo
+                    parentHandle = instance.parentHandle
+                    newInstance.parentHandle = parentHandle
+                    newInstance.layer = instance.layer
+                    instances.append(newInstance)
+            newFrame.items = list(newFrameItems)
+            newFrame.folders = folders = []
+            for item in newFrame.items:
+                newFolder = newFrame.new(ItemFolder)
+                newFolder.items = [item.handle]
+                folders.append(newFolder)
+            events = newFrame.events = frame.new(Events)
+            events.version = 1027
+            events.frameType = 0
+            events.items = frame.events.items
+            events.objects = objects = []
+            for item in newFrame.items:
                 newObject = events.new(EventObject)
-                qualifiers[key] = newObject
-                newHandle = 0
-                while 1:
-                    if newHandle not in qualifiers and newHandle not in frameItems:
-                        break
-                    newHandle += 1
-                frameItems[newHandle] = newObject
-                newObject.handle = newHandle
-                newObject.systemQualifier = item.qualifier
-                newObject.name = ''
+                objects.append(newObject)
+                newObject.handle = item.handle
+                newObject.name = item.name
                 newObject.typeName = ''
-                newObject.itemType = item.type
-                newObject.objectType = SYSTEM_ITEM_TYPE
+                newObject.itemType = item.objectType
+                newObject.objectType = FRAME_ITEM_TYPE
                 newObject.flags = 0
-            for eventGroup in frame.events.items:
-                for aceList in (eventGroup.actions, eventGroup.conditions):
-                    for ace in aceList:
-                        if ace.objectInfo == objectInfo:
-                            ace.objectInfo = newHandle
-                        for parameter in ace.items:
-                            parameter = parameter.loader
-                            if hasattr(parameter, 'objectInfo'):
-                                if parameter.objectInfo == objectInfo:
-                                    parameter.objectInfo = newHandle
-                            if hasattr(parameter, 'objectInfoParent'):
-                                if parameter.objectInfoParent == objectInfo:
-                                    parameter.objectInfoParent = newHandle
-                            if hasattr(parameter, 'position'):
-                                position = parameter.position
-                                if position.objectInfoParent == objectInfo:
-                                    position.objectInfoParent = newHandle
-                            if parameter.isExpression:
-                                for expression in parameter.items:
-                                    if expression.objectInfo == objectInfo:
-                                        expression.objectInfo = newHandle
-            objects.append(newObject)
-        # group stuff
-        groups = {}
-        groupId = 0
+                newObject.itemHandle = item.handle
+                newObject.instanceHandle = 0xFFFFFFFF
+            for k, item in frame.events.qualifiers.iteritems():
+                key = (k, item.type)
+                objectInfo = item.objectInfo
+                if key in qualifiers:
+                    newObject = qualifiers[key]
+                    newHandle = newObject.handle
+                else:
+                    newObject = events.new(EventObject)
+                    qualifiers[key] = newObject
+                    newHandle = 0
+                    while 1:
+                        if newHandle not in qualifiers and newHandle not in frameItems:
+                            break
+                        newHandle += 1
+                    frameItems[newHandle] = newObject
+                    newObject.handle = newHandle
+                    newObject.systemQualifier = item.qualifier
+                    newObject.name = ''
+                    newObject.typeName = ''
+                    newObject.itemType = item.type
+                    newObject.objectType = SYSTEM_ITEM_TYPE
+                    newObject.flags = 0
+                for eventGroup in frame.events.items:
+                    for aceList in (eventGroup.actions, eventGroup.conditions):
+                        for ace in aceList:
+                            if ace.objectInfo == objectInfo:
+                                ace.objectInfo = newHandle
+                            for parameter in ace.items:
+                                parameter = parameter.loader
+                                if hasattr(parameter, 'objectInfo'):
+                                    if parameter.objectInfo == objectInfo:
+                                        parameter.objectInfo = newHandle
+                                if hasattr(parameter, 'objectInfoParent'):
+                                    if parameter.objectInfoParent == objectInfo:
+                                        parameter.objectInfoParent = newHandle
+                                if hasattr(parameter, 'position'):
+                                    position = parameter.position
+                                    if position.objectInfoParent == objectInfo:
+                                        position.objectInfoParent = newHandle
+                                if parameter.isExpression:
+                                    for expression in parameter.items:
+                                        if expression.objectInfo == objectInfo:
+                                            expression.objectInfo = newHandle
+                objects.append(newObject)
+            # group stuff
+            groups = {}
+            groupId = 0
+        except:
+            pass
         def loop_parameters():
-            for eventGroup in frame.events.items:
-                for aceList in (eventGroup.actions, eventGroup.conditions):
-                    for ace in aceList:
-                        for parameter in ace.items:
-                            yield parameter.getName(), parameter.loader
+            try:
+                for eventGroup in frame.events.items:
+                    for aceList in (eventGroup.actions, eventGroup.conditions):
+                        for ace in aceList:
+                            for parameter in ace.items:
+                                yield parameter.getName(), parameter.loader
+            except:
+                pass
 
         for name, parameter in loop_parameters():
             if name == 'GROUP':
@@ -558,7 +564,11 @@ def translate(game, print_func = dummy_out):
                 parameter.savedPointer = parameter.pointer = 0
 
         newFrame.chunks = mfa.new(ChunkList)
-        mfa.frames.append(save_data_loader(newFrame))
+        try:
+            mfa.frames.append(save_data_loader(newFrame))
+        except:
+            print "Empty frame error caught"
+            pass
         frame.close()
 
     return mfa
