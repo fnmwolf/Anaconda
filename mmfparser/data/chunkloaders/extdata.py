@@ -26,8 +26,8 @@ class ExtData(DataLoader):
             self.filename = reader.readString()
             self.data = reader.read()
         else:
-            reader.checkDefault(reader.readInt(), 0)
-            reader.checkDefault(reader.read(), '')
+            self.filename = reader.readInt()
+            self.data = reader.read()
         
     def write(self, reader):
         reader.writeInt(0)

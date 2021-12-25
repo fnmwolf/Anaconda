@@ -124,9 +124,10 @@ class Frame(DataLoader):
 
     def read_now(self, reader):
         self.delayedReader = None
-        try:
+        if True:
             newChunks = self.new(chunk.ChunkList, reader)
-        except:
+        if False:
+            print 'chunkList failed to load'
             return
         name = newChunks.popChunk(FrameName, True)
         if name:

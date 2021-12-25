@@ -397,13 +397,15 @@ cdef class ImageItem(DataLoader):
         cdef bint old = self.settings.get('old', False)
         cdef bint debug = self.settings.get('debug', False)
         cdef ByteReader newReader
-        if old:
-            newReader = onepointfive.decompress(reader)
-        elif debug:
-            newReader = reader
-        else:
-            newReader = zlibdata.decompress(reader)
-
+        try:
+            if old:
+                newReader = onepointfive.decompress(reader)
+            elif debug:
+                newReader = reader
+            else:
+                newReader = zlibdata.decompress(reader)
+        except:
+            return
         start = newReader.tell()
         
         if old:
@@ -411,7 +413,7 @@ cdef class ImageItem(DataLoader):
         else:
             self.checksum = newReader.readInt()
         self.references = newReader.readInt()
-        cdef int size = newReader.readInt(True)
+        size = newReader.readInt(True)
         
         if debug:
             newReader = newReader.readReader(size + 20)
