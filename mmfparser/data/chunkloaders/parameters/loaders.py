@@ -351,8 +351,13 @@ class Group(ParameterCommon):
         self.offset = reader.tell() - 24
         self.flags.setFlags(reader.readShort(True))
         self.id = reader.readShort(True)
-        self.name = self.readString(reader, 96)
-        self.password = reader.readInt()
+        try:
+            self.name = self.readString(reader, 96)
+            self.password = reader.readInt()
+        except:
+            self.name = 'Anaconda - error'
+            self.password = 420
+            print 'error reading group name'
 
     def write(self, reader):
         reader.writeShort(self.flags.getFlags(), True)
