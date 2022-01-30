@@ -144,10 +144,24 @@ class Frame(DataLoader):
         self.flags = newHeader.flags
 
         newVirtual = newChunks.popChunk(VirtualSize)
+        #print 'reading virtual size'
         self.top = newVirtual.top
         self.bottom = newVirtual.bottom
         self.left = newVirtual.left
         self.right = newVirtual.right
+
+        #print self.name
+        #print self.width
+        #print self.height
+        #print self.top
+        #print self.bottom
+        #print self.left
+        #print self.right
+
+        #stupid workaround
+        self.width = self.right
+        self.height = self.bottom
+
 
         self.instances = newChunks.popChunk(ObjectInstances, True)
 
@@ -181,6 +195,9 @@ class Frame(DataLoader):
         newVirtual.bottom = self.bottom
         newVirtual.left = self.left
         newVirtual.right = self.right
+        print 'writing virt size to mfa'
+        print newVirtual.right
+        print newVirtual.bottom
         newChunks.append(newVirtual)
 
         if self.name is not None:
