@@ -1,20 +1,5 @@
 # Copyright (c) Mathias Kaerlev 2012.
 
-# This file is part of Anaconda.
-
-# Anaconda is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-
-# Anaconda is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-
-# You should have received a copy of the GNU General Public License
-# along with Anaconda.  If not, see <http://www.gnu.org/licenses/>.
-
 import sys
 sys.path.append('..')
 
@@ -32,8 +17,15 @@ def main():
     print 'Anaconda Decompiler'
     print 'ONLY for educational purpose, or game datamining ;)'
     print ''
-    input = sys.argv[1]
-    output = 'C:\Out'
+    try:
+        input = sys.argv[1]
+    except IndexError:
+        print 'Usage: python bimbam2.py yourGameExe.exe'
+        exit()
+    try:
+        output = sys.argv[2]
+    except IndexError:
+        output = 'C:\Out'
     fp = ByteReader(open(input, 'rb'))
     if input.endswith('.ccn'):
         newGame = GameData(fp)
@@ -65,7 +57,10 @@ def main():
         if char in whitelist:
             new_s += char
     print new_s
-    out_path = os.path.join(output, new_s + '-compressed.mfa')
+    try:
+        out_path = os.path.join(output, sys.argv[3] + '.mfa')
+    except IndexError:
+        out_path = os.path.join(output, new_s + '-compressed.mfa')
     print 'Writing MFA...'
     newMfa.write(ByteReader(open(out_path, 'wb')))
 
