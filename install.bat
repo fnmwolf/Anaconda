@@ -29,11 +29,6 @@ ECHO ^[32mInstalling Python VC++ for Python 2.7[0m
 call msiexec /I "%~dp0VCForPython27.msi" /quiet
 )
 ECHO ^[32mPython VC++ for Python 2.7 Installed...[0m
-IF NOT EXIST "C:/Program Files/Python39/python.exe" (
-ECHO ^[32mInstalling Python 3.9.6[0m
-call "%~dp0python-3.9.6-amd64.exe" /quiet  InstallAllUsers=1
-)
-ECHO ^[32mPython 3.9.6 Installed...[0m
 IF NOT EXIST "C:\Python27\lib\site-packages\Cython" (
 ECHO ^[32mInstalling Cython 0.21.2[0m
 call C:/Python27/Python.exe -m pip install Cython==0.21.2
