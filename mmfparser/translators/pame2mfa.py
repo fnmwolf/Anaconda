@@ -256,23 +256,27 @@ def translate(game, print_func = dummy_out):
             if itemLoader.animations is not None:
                 animationHeader = itemLoader.animations
                 newLoader.items = items = []
-                for i in xrange(max(animationHeader.loadedAnimations) + 1):
-                    newAnimation = newLoader.new(Animation)
-                    items.append(newAnimation)
-                    newAnimation.directions = newDirections = []
-                    try:
-                        animation = animationHeader.loadedAnimations[i]
-                    except KeyError:
-                        continue
-                    for n, direction in animation.loadedDirections.iteritems():
-                        newDirection = newAnimation.new(AnimationDirection)
-                        newDirections.append(newDirection)
-                        newDirection.index = n
-                        newDirection.minSpeed = direction.minSpeed
-                        newDirection.maxSpeed = direction.maxSpeed
-                        newDirection.repeat = direction.repeat
-                        newDirection.backTo = direction.backTo
-                        newDirection.frames = direction.frames
+                try:
+                    for i in xrange(max(animationHeader.loadedAnimations) + 1):
+                        newAnimation = newLoader.new(Animation)
+                        items.append(newAnimation)
+                        newAnimation.directions = newDirections = []
+                        try:
+                            animation = animationHeader.loadedAnimations[i]
+                        except KeyError:
+                            continue
+                        for n, direction in animation.loadedDirections.iteritems():
+                            newDirection = newAnimation.new(AnimationDirection)
+                            newDirections.append(newDirection)
+                            newDirection.index = n
+                            newDirection.minSpeed = direction.minSpeed
+                            newDirection.maxSpeed = direction.maxSpeed
+                            newDirection.repeat = direction.repeat
+                            newDirection.backTo = direction.backTo
+                            newDirection.frames = direction.frames
+                except:
+                    print 'IndexError on animation not found ignored'
+                    pass
             if item.objectType >= EXTENSION_BASE:
                 extension = item.getExtension(game.extensions)
                 newLoader.extensionType = -1
@@ -412,6 +416,15 @@ def translate(game, print_func = dummy_out):
             newFrame.palette = newFrame.palette
             newFrame.stampHandle = 12
             newFrame.activeLayer = 0
+            #print 'pame virtual size'
+            #print frame.top
+            #print frame.bottom
+            #print frame.left
+            #print frame.right
+            newFrame.top = frame.top
+            newFrame.bottom = frame.bottom
+            newFrame.left = frame.left
+            newFrame.right = frame.right
             newFrame.layers = layers = []
             try:
                 for layer in frame.layers.items:
