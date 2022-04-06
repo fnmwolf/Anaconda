@@ -414,8 +414,8 @@ def getClosestAnimation(index, animationDict, count):
     for i in xrange(count):
         if i in animationDict:
             return animationDict[i]
-    raise IndexError('no animation could be found for %r' % (
-        ANIMATION_NAMES[index]))
+    print 'IndexError - no animation could be found for %r' % (
+        ANIMATION_NAMES[index])
 
 cdef class AnimationHeader(DataLoader):
     cdef public:

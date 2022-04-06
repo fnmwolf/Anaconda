@@ -698,7 +698,7 @@ struct __pyx_obj_9mmfparser_4data_12chunkloaders_7objects_Animation {
 
 
 /* "mmfparser\data\chunkloaders\objects.pyx":420
- *         ANIMATION_NAMES[index]))
+ *         ANIMATION_NAMES[index])
  * 
  * cdef class AnimationHeader(DataLoader):             # <<<<<<<<<<<<<<
  *     cdef public:
@@ -1012,7 +1012,7 @@ static struct __pyx_vtabstruct_9mmfparser_4data_12chunkloaders_7objects_Animatio
 
 
 /* "mmfparser\data\chunkloaders\objects.pyx":420
- *         ANIMATION_NAMES[index]))
+ *         ANIMATION_NAMES[index])
  * 
  * cdef class AnimationHeader(DataLoader):             # <<<<<<<<<<<<<<
  *     cdef public:
@@ -1320,11 +1320,6 @@ static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[], \
     PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args, \
     const char* function_name);
 
-static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb);
-static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb);
-
-static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
-
 static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg);
 
 static CYTHON_INLINE PyObject* __Pyx_PyDict_Keys(PyObject* d);
@@ -1376,6 +1371,14 @@ static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level);
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
+
+static int __Pyx_Print(PyObject*, PyObject *, int);
+#if CYTHON_COMPILING_IN_PYPY || PY_MAJOR_VERSION >= 3
+static PyObject* __pyx_print = 0;
+static PyObject* __pyx_print_kwargs = 0;
+#endif
+
+static int __Pyx_PrintOne(PyObject* stream, PyObject *o);
 
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_short(short value);
 
@@ -1465,10 +1468,10 @@ static PyObject *__pyx_builtin_object;
 static PyObject *__pyx_builtin_xrange;
 static PyObject *__pyx_builtin_KeyError;
 static PyObject *__pyx_builtin_enumerate;
-static PyObject *__pyx_builtin_IndexError;
 static PyObject *__pyx_builtin_max;
 static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_AttributeError;
+static PyObject *__pyx_builtin_IndexError;
 static PyObject *__pyx_pf_9mmfparser_4data_12chunkloaders_7objects_15AlterableValues_read(struct __pyx_obj_9mmfparser_4data_12chunkloaders_7objects_AlterableValues *__pyx_v_self, struct __pyx_obj_9mmfparser_10bytereader_ByteReader *__pyx_v_reader); /* proto */
 static PyObject *__pyx_pf_9mmfparser_4data_12chunkloaders_7objects_15AlterableValues_2write(struct __pyx_obj_9mmfparser_4data_12chunkloaders_7objects_AlterableValues *__pyx_v_self, struct __pyx_obj_9mmfparser_10bytereader_ByteReader *__pyx_v_reader); /* proto */
 static PyObject *__pyx_pf_9mmfparser_4data_12chunkloaders_7objects_15AlterableValues_5items___get__(struct __pyx_obj_9mmfparser_4data_12chunkloaders_7objects_AlterableValues *__pyx_v_self); /* proto */
@@ -1795,6 +1798,7 @@ static char __pyx_k__18[] = "+";
 static char __pyx_k__19[] = ".";
 static char __pyx_k_all[] = "__all__";
 static char __pyx_k_doc[] = "__doc__";
+static char __pyx_k_end[] = "end";
 static char __pyx_k_get[] = "get";
 static char __pyx_k_max[] = "max";
 static char __pyx_k_new[] = "new";
@@ -1806,6 +1810,7 @@ static char __pyx_k_None[] = "None";
 static char __pyx_k_TEXT[] = "TEXT";
 static char __pyx_k_Text[] = "Text";
 static char __pyx_k_copy[] = "copy";
+static char __pyx_k_file[] = "file";
 static char __pyx_k_keys[] = "keys";
 static char __pyx_k_main[] = "__main__";
 static char __pyx_k_name[] = "name";
@@ -1823,6 +1828,7 @@ static char __pyx_k_build[] = "build";
 static char __pyx_k_count[] = "count";
 static char __pyx_k_image[] = "image";
 static char __pyx_k_index[] = "index";
+static char __pyx_k_print[] = "print";
 static char __pyx_k_range[] = "range";
 static char __pyx_k_value[] = "value";
 static char __pyx_k_width[] = "width";
@@ -2032,8 +2038,8 @@ static char __pyx_k_ScrollingIndependant[] = "ScrollingIndependant";
 static char __pyx_k_TRANSPARENT_OBSTACLE[] = "TRANSPARENT_OBSTACLE";
 static char __pyx_k_mmfparser_bytereader[] = "mmfparser.bytereader";
 static char __pyx_k_ANIMATION_ALTERNATIVES[] = "ANIMATION_ALTERNATIVES";
-static char __pyx_k_no_animation_could_be_found_for[] = "no animation could be found for %r";
 static char __pyx_k_E_LAPTOP_Downloads_AnalCondom_Pl[] = "E:\\LAPTOP\\Downloads\\AnalCondom-Plus - Copy\\AnacondaDev - Compression\\mmfparser\\data\\chunkloaders\\objects.pyx";
+static char __pyx_k_IndexError_no_animation_could_be[] = "IndexError - no animation could be found for %r";
 static char __pyx_k_mmfparser_data_chunkloaders_move[] = "mmfparser.data.chunkloaders.movement";
 static char __pyx_k_mmfparser_data_chunkloaders_obje[] = "mmfparser.data.chunkloaders.objectinfo";
 static char __pyx_k_mmfparser_data_chunkloaders_tran[] = "mmfparser.data.chunkloaders.transition";
@@ -2127,6 +2133,7 @@ static PyObject *__pyx_n_s_HorizontalCenter;
 static PyObject *__pyx_n_s_HorizontalSlider;
 static PyObject *__pyx_n_s_INVALID_FONT;
 static PyObject *__pyx_n_s_IndexError;
+static PyObject *__pyx_kp_s_IndexError_no_animation_could_be;
 static PyObject *__pyx_n_s_InkEffects;
 static PyObject *__pyx_n_s_Internal;
 static PyObject *__pyx_n_s_InternalBacksave;
@@ -2252,7 +2259,9 @@ static PyObject *__pyx_n_s_copy;
 static PyObject *__pyx_n_s_count;
 static PyObject *__pyx_n_s_doc;
 static PyObject *__pyx_n_s_e;
+static PyObject *__pyx_n_s_end;
 static PyObject *__pyx_n_s_enumerate;
+static PyObject *__pyx_n_s_file;
 static PyObject *__pyx_n_s_fromHandle;
 static PyObject *__pyx_n_s_get;
 static PyObject *__pyx_n_s_getClosestAnimation;
@@ -2281,11 +2290,11 @@ static PyObject *__pyx_n_s_mmfparser_data_chunkloaders_tran;
 static PyObject *__pyx_n_s_module;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_new;
-static PyObject *__pyx_kp_s_no_animation_could_be_found_for;
 static PyObject *__pyx_n_s_object;
 static PyObject *__pyx_n_s_objectType;
 static PyObject *__pyx_n_s_obstacleType;
 static PyObject *__pyx_n_s_prepare;
+static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_qualname;
 static PyObject *__pyx_n_s_range;
@@ -11364,7 +11373,7 @@ static PyObject *__pyx_pf_9mmfparser_4data_12chunkloaders_7objects_getClosestAni
  *     for i in xrange(count):
  *         if i in animationDict:             # <<<<<<<<<<<<<<
  *             return animationDict[i]
- *     raise IndexError('no animation could be found for %r' % (
+ *     print 'IndexError - no animation could be found for %r' % (
  */
     __pyx_t_10 = (__Pyx_PySequence_Contains(__pyx_v_i, __pyx_v_animationDict, Py_EQ)); if (unlikely(__pyx_t_10 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 415; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_t_9 = (__pyx_t_10 != 0);
@@ -11374,8 +11383,8 @@ static PyObject *__pyx_pf_9mmfparser_4data_12chunkloaders_7objects_getClosestAni
  *     for i in xrange(count):
  *         if i in animationDict:
  *             return animationDict[i]             # <<<<<<<<<<<<<<
- *     raise IndexError('no animation could be found for %r' % (
- *         ANIMATION_NAMES[index]))
+ *     print 'IndexError - no animation could be found for %r' % (
+ *         ANIMATION_NAMES[index])
  */
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_6 = PyObject_GetItem(__pyx_v_animationDict, __pyx_v_i); if (unlikely(__pyx_t_6 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 416; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
@@ -11398,8 +11407,8 @@ static PyObject *__pyx_pf_9mmfparser_4data_12chunkloaders_7objects_getClosestAni
 
   /* "mmfparser\data\chunkloaders\objects.pyx":418
  *             return animationDict[i]
- *     raise IndexError('no animation could be found for %r' % (
- *         ANIMATION_NAMES[index]))             # <<<<<<<<<<<<<<
+ *     print 'IndexError - no animation could be found for %r' % (
+ *         ANIMATION_NAMES[index])             # <<<<<<<<<<<<<<
  * 
  * cdef class AnimationHeader(DataLoader):
  */
@@ -11412,24 +11421,15 @@ static PyObject *__pyx_pf_9mmfparser_4data_12chunkloaders_7objects_getClosestAni
   /* "mmfparser\data\chunkloaders\objects.pyx":417
  *         if i in animationDict:
  *             return animationDict[i]
- *     raise IndexError('no animation could be found for %r' % (             # <<<<<<<<<<<<<<
- *         ANIMATION_NAMES[index]))
+ *     print 'IndexError - no animation could be found for %r' % (             # <<<<<<<<<<<<<<
+ *         ANIMATION_NAMES[index])
  * 
  */
-  __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_no_animation_could_be_found_for, __pyx_t_6); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 417; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_IndexError_no_animation_could_be, __pyx_t_6); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 417; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 417; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_IndexError, __pyx_t_6, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 417; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_Raise(__pyx_t_4, 0, 0, 0);
+  if (__Pyx_PrintOne(0, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 417; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  {__pyx_filename = __pyx_f[0]; __pyx_lineno = 417; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "mmfparser\data\chunkloaders\objects.pyx":403
  * }
@@ -11440,6 +11440,8 @@ static PyObject *__pyx_pf_9mmfparser_4data_12chunkloaders_7objects_getClosestAni
  */
 
   /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_6);
@@ -31721,6 +31723,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_HorizontalSlider, __pyx_k_HorizontalSlider, sizeof(__pyx_k_HorizontalSlider), 0, 0, 1, 1},
   {&__pyx_n_s_INVALID_FONT, __pyx_k_INVALID_FONT, sizeof(__pyx_k_INVALID_FONT), 0, 0, 1, 1},
   {&__pyx_n_s_IndexError, __pyx_k_IndexError, sizeof(__pyx_k_IndexError), 0, 0, 1, 1},
+  {&__pyx_kp_s_IndexError_no_animation_could_be, __pyx_k_IndexError_no_animation_could_be, sizeof(__pyx_k_IndexError_no_animation_could_be), 0, 0, 1, 0},
   {&__pyx_n_s_InkEffects, __pyx_k_InkEffects, sizeof(__pyx_k_InkEffects), 0, 0, 1, 1},
   {&__pyx_n_s_Internal, __pyx_k_Internal, sizeof(__pyx_k_Internal), 0, 0, 1, 1},
   {&__pyx_n_s_InternalBacksave, __pyx_k_InternalBacksave, sizeof(__pyx_k_InternalBacksave), 0, 0, 1, 1},
@@ -31846,7 +31849,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_count, __pyx_k_count, sizeof(__pyx_k_count), 0, 0, 1, 1},
   {&__pyx_n_s_doc, __pyx_k_doc, sizeof(__pyx_k_doc), 0, 0, 1, 1},
   {&__pyx_n_s_e, __pyx_k_e, sizeof(__pyx_k_e), 0, 0, 1, 1},
+  {&__pyx_n_s_end, __pyx_k_end, sizeof(__pyx_k_end), 0, 0, 1, 1},
   {&__pyx_n_s_enumerate, __pyx_k_enumerate, sizeof(__pyx_k_enumerate), 0, 0, 1, 1},
+  {&__pyx_n_s_file, __pyx_k_file, sizeof(__pyx_k_file), 0, 0, 1, 1},
   {&__pyx_n_s_fromHandle, __pyx_k_fromHandle, sizeof(__pyx_k_fromHandle), 0, 0, 1, 1},
   {&__pyx_n_s_get, __pyx_k_get, sizeof(__pyx_k_get), 0, 0, 1, 1},
   {&__pyx_n_s_getClosestAnimation, __pyx_k_getClosestAnimation, sizeof(__pyx_k_getClosestAnimation), 0, 0, 1, 1},
@@ -31875,11 +31880,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_module, __pyx_k_module, sizeof(__pyx_k_module), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_new, __pyx_k_new, sizeof(__pyx_k_new), 0, 0, 1, 1},
-  {&__pyx_kp_s_no_animation_could_be_found_for, __pyx_k_no_animation_could_be_found_for, sizeof(__pyx_k_no_animation_could_be_found_for), 0, 0, 1, 0},
   {&__pyx_n_s_object, __pyx_k_object, sizeof(__pyx_k_object), 0, 0, 1, 1},
   {&__pyx_n_s_objectType, __pyx_k_objectType, sizeof(__pyx_k_objectType), 0, 0, 1, 1},
   {&__pyx_n_s_obstacleType, __pyx_k_obstacleType, sizeof(__pyx_k_obstacleType), 0, 0, 1, 1},
   {&__pyx_n_s_prepare, __pyx_k_prepare, sizeof(__pyx_k_prepare), 0, 0, 1, 1},
+  {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_qualname, __pyx_k_qualname, sizeof(__pyx_k_qualname), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
@@ -31908,10 +31913,10 @@ static int __Pyx_InitCachedBuiltins(void) {
   #endif
   __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 347; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_IndexError = __Pyx_GetBuiltinName(__pyx_n_s_IndexError); if (!__pyx_builtin_IndexError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 417; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_max = __Pyx_GetBuiltinName(__pyx_n_s_max); if (!__pyx_builtin_max) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 449; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_AttributeError = __Pyx_GetBuiltinName(__pyx_n_s_AttributeError); if (!__pyx_builtin_AttributeError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_IndexError = __Pyx_GetBuiltinName(__pyx_n_s_IndexError); if (!__pyx_builtin_IndexError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -34380,194 +34385,6 @@ bad:
     return -1;
 }
 
-static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    PyThreadState *tstate = PyThreadState_GET();
-    tmp_type = tstate->curexc_type;
-    tmp_value = tstate->curexc_value;
-    tmp_tb = tstate->curexc_traceback;
-    tstate->curexc_type = type;
-    tstate->curexc_value = value;
-    tstate->curexc_traceback = tb;
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#else
-    PyErr_Restore(type, value, tb);
-#endif
-}
-static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyThreadState *tstate = PyThreadState_GET();
-    *type = tstate->curexc_type;
-    *value = tstate->curexc_value;
-    *tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#else
-    PyErr_Fetch(type, value, tb);
-#endif
-}
-
-#if PY_MAJOR_VERSION < 3
-static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb,
-                        CYTHON_UNUSED PyObject *cause) {
-    Py_XINCREF(type);
-    if (!value || value == Py_None)
-        value = NULL;
-    else
-        Py_INCREF(value);
-    if (!tb || tb == Py_None)
-        tb = NULL;
-    else {
-        Py_INCREF(tb);
-        if (!PyTraceBack_Check(tb)) {
-            PyErr_SetString(PyExc_TypeError,
-                "raise: arg 3 must be a traceback or None");
-            goto raise_error;
-        }
-    }
-    if (PyType_Check(type)) {
-#if CYTHON_COMPILING_IN_PYPY
-        if (!value) {
-            Py_INCREF(Py_None);
-            value = Py_None;
-        }
-#endif
-        PyErr_NormalizeException(&type, &value, &tb);
-    } else {
-        if (value) {
-            PyErr_SetString(PyExc_TypeError,
-                "instance exception may not have a separate value");
-            goto raise_error;
-        }
-        value = type;
-        type = (PyObject*) Py_TYPE(type);
-        Py_INCREF(type);
-        if (!PyType_IsSubtype((PyTypeObject *)type, (PyTypeObject *)PyExc_BaseException)) {
-            PyErr_SetString(PyExc_TypeError,
-                "raise: exception class must be a subclass of BaseException");
-            goto raise_error;
-        }
-    }
-    __Pyx_ErrRestore(type, value, tb);
-    return;
-raise_error:
-    Py_XDECREF(value);
-    Py_XDECREF(type);
-    Py_XDECREF(tb);
-    return;
-}
-#else
-static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause) {
-    PyObject* owned_instance = NULL;
-    if (tb == Py_None) {
-        tb = 0;
-    } else if (tb && !PyTraceBack_Check(tb)) {
-        PyErr_SetString(PyExc_TypeError,
-            "raise: arg 3 must be a traceback or None");
-        goto bad;
-    }
-    if (value == Py_None)
-        value = 0;
-    if (PyExceptionInstance_Check(type)) {
-        if (value) {
-            PyErr_SetString(PyExc_TypeError,
-                "instance exception may not have a separate value");
-            goto bad;
-        }
-        value = type;
-        type = (PyObject*) Py_TYPE(value);
-    } else if (PyExceptionClass_Check(type)) {
-        PyObject *instance_class = NULL;
-        if (value && PyExceptionInstance_Check(value)) {
-            instance_class = (PyObject*) Py_TYPE(value);
-            if (instance_class != type) {
-                if (PyObject_IsSubclass(instance_class, type)) {
-                    type = instance_class;
-                } else {
-                    instance_class = NULL;
-                }
-            }
-        }
-        if (!instance_class) {
-            PyObject *args;
-            if (!value)
-                args = PyTuple_New(0);
-            else if (PyTuple_Check(value)) {
-                Py_INCREF(value);
-                args = value;
-            } else
-                args = PyTuple_Pack(1, value);
-            if (!args)
-                goto bad;
-            owned_instance = PyObject_Call(type, args, NULL);
-            Py_DECREF(args);
-            if (!owned_instance)
-                goto bad;
-            value = owned_instance;
-            if (!PyExceptionInstance_Check(value)) {
-                PyErr_Format(PyExc_TypeError,
-                             "calling %R should have returned an instance of "
-                             "BaseException, not %R",
-                             type, Py_TYPE(value));
-                goto bad;
-            }
-        }
-    } else {
-        PyErr_SetString(PyExc_TypeError,
-            "raise: exception class must be a subclass of BaseException");
-        goto bad;
-    }
-#if PY_VERSION_HEX >= 0x03030000
-    if (cause) {
-#else
-    if (cause && cause != Py_None) {
-#endif
-        PyObject *fixed_cause;
-        if (cause == Py_None) {
-            fixed_cause = NULL;
-        } else if (PyExceptionClass_Check(cause)) {
-            fixed_cause = PyObject_CallObject(cause, NULL);
-            if (fixed_cause == NULL)
-                goto bad;
-        } else if (PyExceptionInstance_Check(cause)) {
-            fixed_cause = cause;
-            Py_INCREF(fixed_cause);
-        } else {
-            PyErr_SetString(PyExc_TypeError,
-                            "exception causes must derive from "
-                            "BaseException");
-            goto bad;
-        }
-        PyException_SetCause(value, fixed_cause);
-    }
-    PyErr_SetObject(type, value);
-    if (tb) {
-#if CYTHON_COMPILING_IN_PYPY
-        PyObject *tmp_type, *tmp_value, *tmp_tb;
-        PyErr_Fetch(tmp_type, tmp_value, tmp_tb);
-        Py_INCREF(tb);
-        PyErr_Restore(tmp_type, tmp_value, tb);
-        Py_XDECREF(tmp_tb);
-#else
-        PyThreadState *tstate = PyThreadState_GET();
-        PyObject* tmp_tb = tstate->curexc_traceback;
-        if (tb != tmp_tb) {
-            Py_INCREF(tb);
-            tstate->curexc_traceback = tb;
-            Py_XDECREF(tmp_tb);
-        }
-#endif
-    }
-bad:
-    Py_XDECREF(owned_instance);
-    return;
-}
-#endif
-
 static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg) {
     PyObject *method, *result = NULL;
     method = __Pyx_PyObject_GetAttrStr(obj, method_name);
@@ -35311,6 +35128,147 @@ raise_neg_overflow:
         "can't convert negative value to long");
     return (long) -1;
 }
+
+#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
+static PyObject *__Pyx_GetStdout(void) {
+    PyObject *f = PySys_GetObject((char *)"stdout");
+    if (!f) {
+        PyErr_SetString(PyExc_RuntimeError, "lost sys.stdout");
+    }
+    return f;
+}
+static int __Pyx_Print(PyObject* f, PyObject *arg_tuple, int newline) {
+    int i;
+    if (!f) {
+        if (!(f = __Pyx_GetStdout()))
+            return -1;
+    }
+    Py_INCREF(f);
+    for (i=0; i < PyTuple_GET_SIZE(arg_tuple); i++) {
+        PyObject* v;
+        if (PyFile_SoftSpace(f, 1)) {
+            if (PyFile_WriteString(" ", f) < 0)
+                goto error;
+        }
+        v = PyTuple_GET_ITEM(arg_tuple, i);
+        if (PyFile_WriteObject(v, f, Py_PRINT_RAW) < 0)
+            goto error;
+        if (PyString_Check(v)) {
+            char *s = PyString_AsString(v);
+            Py_ssize_t len = PyString_Size(v);
+            if (len > 0) {
+                switch (s[len-1]) {
+                    case ' ': break;
+                    case '\f': case '\r': case '\n': case '\t': case '\v':
+                        PyFile_SoftSpace(f, 0);
+                        break;
+                    default:  break;
+                }
+            }
+        }
+    }
+    if (newline) {
+        if (PyFile_WriteString("\n", f) < 0)
+            goto error;
+        PyFile_SoftSpace(f, 0);
+    }
+    Py_DECREF(f);
+    return 0;
+error:
+    Py_DECREF(f);
+    return -1;
+}
+#else
+static int __Pyx_Print(PyObject* stream, PyObject *arg_tuple, int newline) {
+    PyObject* kwargs = 0;
+    PyObject* result = 0;
+    PyObject* end_string;
+    if (unlikely(!__pyx_print)) {
+        __pyx_print = PyObject_GetAttr(__pyx_b, __pyx_n_s_print);
+        if (!__pyx_print)
+            return -1;
+    }
+    if (stream) {
+        kwargs = PyDict_New();
+        if (unlikely(!kwargs))
+            return -1;
+        if (unlikely(PyDict_SetItem(kwargs, __pyx_n_s_file, stream) < 0))
+            goto bad;
+        if (!newline) {
+            end_string = PyUnicode_FromStringAndSize(" ", 1);
+            if (unlikely(!end_string))
+                goto bad;
+            if (PyDict_SetItem(kwargs, __pyx_n_s_end, end_string) < 0) {
+                Py_DECREF(end_string);
+                goto bad;
+            }
+            Py_DECREF(end_string);
+        }
+    } else if (!newline) {
+        if (unlikely(!__pyx_print_kwargs)) {
+            __pyx_print_kwargs = PyDict_New();
+            if (unlikely(!__pyx_print_kwargs))
+                return -1;
+            end_string = PyUnicode_FromStringAndSize(" ", 1);
+            if (unlikely(!end_string))
+                return -1;
+            if (PyDict_SetItem(__pyx_print_kwargs, __pyx_n_s_end, end_string) < 0) {
+                Py_DECREF(end_string);
+                return -1;
+            }
+            Py_DECREF(end_string);
+        }
+        kwargs = __pyx_print_kwargs;
+    }
+    result = PyObject_Call(__pyx_print, arg_tuple, kwargs);
+    if (unlikely(kwargs) && (kwargs != __pyx_print_kwargs))
+        Py_DECREF(kwargs);
+    if (!result)
+        return -1;
+    Py_DECREF(result);
+    return 0;
+bad:
+    if (kwargs != __pyx_print_kwargs)
+        Py_XDECREF(kwargs);
+    return -1;
+}
+#endif
+
+#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
+static int __Pyx_PrintOne(PyObject* f, PyObject *o) {
+    if (!f) {
+        if (!(f = __Pyx_GetStdout()))
+            return -1;
+    }
+    Py_INCREF(f);
+    if (PyFile_SoftSpace(f, 0)) {
+        if (PyFile_WriteString(" ", f) < 0)
+            goto error;
+    }
+    if (PyFile_WriteObject(o, f, Py_PRINT_RAW) < 0)
+        goto error;
+    if (PyFile_WriteString("\n", f) < 0)
+        goto error;
+    Py_DECREF(f);
+    return 0;
+error:
+    Py_DECREF(f);
+    return -1;
+    /* the line below is just to avoid C compiler
+     * warnings about unused functions */
+    return __Pyx_Print(f, NULL, 0);
+}
+#else
+static int __Pyx_PrintOne(PyObject* stream, PyObject *o) {
+    int res;
+    PyObject* arg_tuple = PyTuple_Pack(1, o);
+    if (unlikely(!arg_tuple))
+        return -1;
+    res = __Pyx_Print(stream, arg_tuple, 1);
+    Py_DECREF(arg_tuple);
+    return res;
+}
+#endif
 
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_short(short value) {
     const short neg_one = (short) -1, const_zero = 0;
