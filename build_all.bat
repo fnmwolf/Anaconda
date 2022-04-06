@@ -1,1 +1,1 @@
-python build.py build_ext -f --inplace
+C:\Python27\python build.py build_ext -f --inplace
