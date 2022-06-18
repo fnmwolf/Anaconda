@@ -14,10 +14,7 @@ For help with decompiling with Anaconda, refer to the Reddit thread [here](https
 For Chowdren installation and usage, please refer to the thread on the Clickteam forums
 [here](http://community.clickteam.com/threads/74080-Chowdren-Blazingly-fast-Fusion-exporter-for-desktop-amp-consoles).
 
-License FAQ
+More Instructions
 ===========
 
-Anaconda and Chowdren are dual-licensed under the GPL and a commercial license.
-Unless you have explicitly acquired a commercial license from me,
-Mathias Kaerlev (mat at mp2 dot dk), you will have to use the runtimes under
-the terms of the GPL.
+[FNaF Modding Wiki](https://fnafmodding.fandom.com/wiki/Code_Decompiling) by Blue Nova
