@@ -1,8 +1,10 @@
-Anaconda/Chowdren for Clickteam Fusion - now with added Build 284 through Build 293 support by fnmwolf, pete7201, ClickNinYT, 1987Kostya, and Blue Nova
+NOTE - this decompiler has been replaced by [Nebula](https://github.com/AITYunivers/NebulaFD), a new decompiler with 2.5+ support. **Anaconda does not support 2.5+ games, please use the new decompiler instead!**
+
+Anaconda/Chowdren for Clickteam Fusion - now with added Build 284 through Build 293 support by fnmwolf, ClickNinYT, 1987Kostya, and Blue Nova
 ======================================
 
 Anaconda 4 is a Clickteam Fusion 2.5 decompiler 
-by fnmwolf, pete7201, ClickNinYT, 1987Kostya, Blue Nova, and Mathias Kærlev.
+by fnmwolf, ClickNinYT, 1987Kostya, Blue Nova, and Mathias Kærlev.
 
 Chowdren for Clickteam Fusion is a cross-platform, hardware
 accelerated runtime with support for desktop and console platforms.
@@ -17,4 +19,4 @@ For Chowdren installation and usage, please refer to the thread on the Clickteam
 More Instructions
 ===========
 
-[FNaF Modding Wiki](https://fnafmodding.fandom.com/wiki/Code_Decompiling) by Blue Nova
+[FNaF Modding Wiki](https://web.archive.org/web/20220620114040/https://fnafmodding.fandom.com/wiki/Code_Decompiling) by Blue Nova
